@@ -32,10 +32,10 @@ dependencies:
   carousel_slider: ^4.2.1
   url_launcher: ^6.1.9
   intl: ^0.17.0
-  google_sign_in: any
+  google_sign_in: ^5.4.0
   firebase_auth: ^4.2.8
   cloud_firestore: ^4.4.2
-  firebase_core: ^2.6.1
+  # firebase_core: ^2.6.1
   shared_preferences: ^2.0.17
   # flutter_html: ^2.1.0
   flutter_facebook_auth: ^5.0.4

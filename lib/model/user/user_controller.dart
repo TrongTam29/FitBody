@@ -10,9 +10,10 @@ class UserController extends GetxController {
 
   Future createUser(UserModel user) async {
     _user.where('email', isEqualTo: user.email).get().then((value) async {
-      if (value.docs.isNotEmpty) {
+      if (value.docs.isEmpty) {
         user.id = _user.doc().id;
         await _user.add(user.toJson());
+        print(user);
       }
     });
   }

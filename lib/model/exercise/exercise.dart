@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 List<Exercise> exerciseFromJson(String str) =>
     List<Exercise>.from(json.decode(str).map((x) => Exercise.fromJson(x)));
 
@@ -36,7 +38,7 @@ class Exercise {
   DateTime? createdAt;
   DateTime? updatedAt;
 
-  factory Exercise.fromJson(Map<String, dynamic> json) => Exercise(
+  factory Exercise.fromJson(DocumentSnapshot json) => Exercise(
         id: json["id"],
         name: json["name"],
         link: json["link"],

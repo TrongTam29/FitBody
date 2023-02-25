@@ -4,7 +4,6 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
 import 'package:my_app/constants.dart';
 import 'package:my_app/screens/hello%20screen/hello_Screen.dart';
-import 'package:my_app/screens/home%20screen/home_main.dart';
 import 'package:my_app/screens/quick%20action/quick_action.dart';
 
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
@@ -12,7 +11,7 @@ final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp().whenComplete(() {});
+  await Firebase.initializeApp();
   var initializationSettingsAndroid = AndroidInitializationSettings('logo');
   var initializationSettingsIOS = DarwinInitializationSettings(
       requestAlertPermission: true,

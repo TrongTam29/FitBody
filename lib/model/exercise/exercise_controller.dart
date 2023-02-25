@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:get/state_manager.dart';
 import 'package:my_app/model/exercise/exercise.dart';
@@ -5,21 +6,16 @@ import 'package:my_app/model/exercise/exercise.dart';
 import 'remote_services.dart';
 
 class ExerciseController extends GetxController {
-  var isLoading = true.obs;
-  var isLoadingfindExerciseByLink = true.obs;
-  var exerciseList = List<Exercise>.generate(100, (index) => Exercise()).obs;
+  CollectionReference _exerciseCollection =
+      FirebaseFirestore.instance.collection("Exercise");
+  RxList<Exercise> exerciseList = RxList<Exercise>([]);
   final exerciseObj = Exercise().obs;
 
-  void fetchExercise(int id) async {
-    try {
-      isLoading(true);
-      var exercises = await ExerciseService.fetchData(id);
-      if (exercises != null) {
-        exerciseList.value = exercises;
-      }
-    } finally {
-      isLoading(false);
-    }
+  void getExercises(int id) {
+    exerciseList.bindStream(_exerciseCollection
+        .where('muscle_group_id', isEqualTo: 1)
+        .snapshots()
+        .map((query) => query.docs.map((e) => Exercise.fromJson(e)).toList()));
   }
 
   void postExercise(String name, String link, String image, String reps,
@@ -29,14 +25,9 @@ class ExerciseController extends GetxController {
   }
 
   Future<Exercise?> findExerciseByLink(String link) async {
-    try {
-      isLoadingfindExerciseByLink(true);
-      var exercise = await ExerciseService.findExercise(link);
-      if (exercise != null) {
-        return exercise;
-      }
-    } finally {
-      isLoadingfindExerciseByLink(false);
+    var exercise = await ExerciseService.findExercise(link);
+    if (exercise != null) {
+      return exercise;
     }
   }
 }

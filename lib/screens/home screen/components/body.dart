@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_app/model/user/user_controller.dart';
-import 'package:my_app/model/user/user_model.dart';
 import 'package:my_app/model/userWorkout/userWorkout_controller.dart';
 import 'package:my_app/screens/gym%20guide/gym_guide.dart';
 import 'package:my_app/screens/hello%20screen/hello_Screen.dart';
@@ -172,18 +171,6 @@ class _MethodsInBodyState extends State<MethodsInBody> {
               ],
             ),
           ),
-          InkWell(
-            onTap: () {
-              UserController userController = Get.put(UserController());
-              // userController.createUser(UserModel(name: 'Trong Tam'));
-              // userController.findEmailUser('trongtam1234');
-            },
-            child: Container(
-              width: 100,
-              height: 100,
-              color: Colors.red,
-            ),
-          )
         ],
       ),
     );
