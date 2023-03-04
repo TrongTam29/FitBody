@@ -4,6 +4,8 @@
 
 import 'dart:convert';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 UserWorkout userWorkoutFromJson(String str) =>
     UserWorkout.fromJson(json.decode(str));
 
@@ -18,41 +20,55 @@ class UserWorkout {
     this.thursday,
     this.friday,
     this.saturday,
-    this.createdAt,
-    this.updatedAt,
+    this.userId,
   });
 
-  int? id;
+  String? id;
   List<String>? monday;
   List<String>? tuesday;
   List<String>? wednesday;
   List<String>? thursday;
   List<String>? friday;
   List<String>? saturday;
-  DateTime? createdAt;
-  DateTime? updatedAt;
+  String? userId;
 
-  factory UserWorkout.fromJson(Map<String, dynamic> json) => UserWorkout(
-        id: json["id"],
-        monday: List<String>.from(json["monday"].map((x) => x)),
-        tuesday: List<String>.from(json["tuesday"].map((x) => x)),
-        wednesday: List<String>.from(json["wednesday"].map((x) => x)),
-        thursday: List<String>.from(json["thursday"].map((x) => x)),
-        friday: List<String>.from(json["friday"].map((x) => x)),
-        saturday: List<String>.from(json["saturday"].map((x) => x)),
-        createdAt: DateTime.parse(json["createdAt"]),
-        updatedAt: DateTime.parse(json["updatedAt"]),
-      );
+  factory UserWorkout.fromJson(DocumentSnapshot json) => UserWorkout(
+      id: json.id,
+      monday: json["monday"] == null
+          ? []
+          : List<String>.from(json["monday"].map((x) => x)),
+      tuesday: json["tuesday"] == null
+          ? []
+          : List<String>.from(json["tuesday"].map((x) => x)),
+      wednesday: json["wednesday"] == null
+          ? []
+          : List<String>.from(json["wednesday"].map((x) => x)),
+      thursday: json["thursday"] == null
+          ? []
+          : List<String>.from(json["thursday"].map((x) => x)),
+      friday: json["friday"] == null
+          ? []
+          : List<String>.from(json["friday"].map((x) => x)),
+      saturday: json["saturday"] == null
+          ? []
+          : List<String>.from(json["saturday"].map((x) => x)),
+      userId: json["userId"]);
 
   Map<String, dynamic> toJson() => {
         "id": id,
-        "monday": List<dynamic>.from(monday!.map((x) => x)),
-        "tuesday": List<dynamic>.from(tuesday!.map((x) => x)),
-        "wednesday": List<dynamic>.from(wednesday!.map((x) => x)),
-        "thursday": List<dynamic>.from(thursday!.map((x) => x)),
-        "friday": List<dynamic>.from(friday!.map((x) => x)),
-        "saturday": List<dynamic>.from(saturday!.map((x) => x)),
-        "createdAt": createdAt!.toIso8601String(),
-        "updatedAt": updatedAt!.toIso8601String(),
+        "monday":
+            monday == null ? [] : List<dynamic>.from(monday!.map((x) => x)),
+        "tuesday":
+            tuesday == null ? [] : List<dynamic>.from(tuesday!.map((x) => x)),
+        "wednesday": wednesday == null
+            ? []
+            : List<dynamic>.from(wednesday!.map((x) => x)),
+        "thursday":
+            thursday == null ? [] : List<dynamic>.from(thursday!.map((x) => x)),
+        "friday":
+            friday == null ? [] : List<dynamic>.from(friday!.map((x) => x)),
+        "saturday":
+            saturday == null ? [] : List<dynamic>.from(saturday!.map((x) => x)),
+        "userId": userId,
       };
 }

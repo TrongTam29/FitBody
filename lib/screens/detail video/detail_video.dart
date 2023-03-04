@@ -1,17 +1,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-// import 'package:flutter_html/flutter_html.dart';
 import 'package:get/get.dart';
-import 'package:my_app/model/exerciseComment/exerciseComment_controller.dart';
+import 'package:my_app/constants.dart';
+import 'package:my_app/model/exercise/exercise_controller.dart';
 import 'package:my_app/model/exerciseComment/exerciseComment_model.dart';
 import 'package:my_app/model/user/user_controller.dart';
-import 'package:my_app/model/user/user_model.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:web_socket_channel/io.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
-
-import '../../constants.dart';
 
 class DetailVideo extends StatefulWidget {
   DetailVideo({
@@ -23,7 +19,7 @@ class DetailVideo extends StatefulWidget {
     required this.reps,
     required this.sets,
   });
-  final int id;
+  final String id;
   final String url;
   final String nameExercise;
   final String sets;
@@ -38,17 +34,10 @@ class DetailVideo extends StatefulWidget {
 class _DetailVideoState extends State<DetailVideo> {
   late YoutubePlayerController _controller;
   final TextEditingController commentController = TextEditingController();
-  final channel = IOWebSocketChannel.connect(baseWsUrl);
+  ExerciseController exerciseController = Get.find();
   var user = FirebaseAuth.instance.currentUser;
-  UserController userController = Get.put(UserController());
-  ExerciseCommentController exerciseCommentController =
-      Get.put(ExerciseCommentController());
 
   var userId;
-  late Comment _comment;
-  late UserComment userComment;
-  List<String> messages = [];
-  List<UserComment> userCommentList = [];
 
   void runYoutubePlayer() {
     _controller = YoutubePlayerController(
@@ -66,8 +55,7 @@ class _DetailVideoState extends State<DetailVideo> {
   @override
   void initState() {
     runYoutubePlayer();
-    takeUserId();
-    fetchUserCommentList();
+    exerciseController.getExercisesComment(widget.id);
     super.initState();
   }
 
@@ -80,30 +68,7 @@ class _DetailVideoState extends State<DetailVideo> {
   @override
   void dispose() {
     _controller.dispose();
-    channel.sink.close();
     super.dispose();
-  }
-
-  void takeUserId() {
-    userController.findUser(user!.email!).then((result) {
-      setState(() {
-        userId = result!.id!;
-      });
-    });
-  }
-
-  void fetchUserCommentList() {
-    exerciseCommentController.fetchExerciseComment(widget.id).then((result) {
-      for (var i in result!) {
-        userController.findUserById(i.userId!).then((value) {
-          setState(() {
-            userComment = UserComment(
-                name: value!.name, image: value.image, comment: i.comment);
-            userCommentList.add(userComment);
-          });
-        });
-      }
-    });
   }
 
   @override
@@ -141,8 +106,15 @@ class _DetailVideoState extends State<DetailVideo> {
                         style: textStyle,
                       ),
                       trailing: IconButton(
-                          onPressed: () {
-                            share(context, widget.url);
+                          onPressed: () async {
+                            final box =
+                                context.findRenderObject() as RenderBox?;
+
+                            await Share.share(
+                              widget.url,
+                              sharePositionOrigin:
+                                  box!.localToGlobal(Offset.zero) & box.size,
+                            );
                           },
                           icon: Icon(
                             Icons.share_rounded,
@@ -261,78 +233,18 @@ class _DetailVideoState extends State<DetailVideo> {
                       ],
                     ),
                     Container(
-                      margin: EdgeInsets.symmetric(horizontal: 10),
-                      // child: Html(
-                      //   data: widget.detail,
-                      //   defaultTextStyle: 
-                      //      TextStyle(
-                            
-                      //         // fontSize: FontSize(18.0),
-                      //         fontFamily: 'Poppins-Light',
-                      //         color: Colors.black,
-                      //         // lineHeight: LineHeight(1.8),
-                      //         // textAlign: TextAlign.justify,
-                      //         ),
-                        
-                      // ),
+                      margin: EdgeInsets.symmetric(horizontal: 20),
+                      child: Text(
+                        widget.detail,
+                        textAlign: TextAlign.justify,
+                        style: TextStyle(
+                          fontSize: 15,
+                        ),
+                      ),
                     ),
                     Divider(
                       thickness: 2,
                     ),
-                    StreamBuilder(
-                        stream: channel.stream,
-                        builder: (context, snapshot) {
-                          if (snapshot.hasData == true) {
-                            userComment = UserComment(
-                                name: user!.displayName!,
-                                image: user!.photoURL!,
-                                comment: '${snapshot.data}');
-
-                            userCommentList.add(userComment);
-                          }
-                          return Column(
-                            children: [
-                              for (var index in userCommentList)
-                                ListTile(
-                                  minLeadingWidth: 2,
-                                  leading: CircleAvatar(
-                                      radius: 20,
-                                      backgroundImage: NetworkImage(
-                                        index.image!,
-                                      )),
-                                  title: Container(
-                                    margin: EdgeInsets.symmetric(vertical: 10),
-                                    padding:
-                                        EdgeInsets.symmetric(horizontal: 10),
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(15),
-                                        color: Colors.grey[200]),
-                                    child: RichText(
-                                      text: TextSpan(
-                                          text: '${index.name}\n',
-                                          style: TextStyle(
-                                              fontSize: 15,
-                                              fontFamily: 'Poppins-SemiBold',
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.black),
-                                          children: [
-                                            TextSpan(
-                                              text: index.comment,
-                                              style: TextStyle(
-                                                  height: 1.5,
-                                                  fontSize: 17,
-                                                  fontFamily:
-                                                      'PragatiNarrow-Regular',
-                                                  fontWeight: FontWeight.normal,
-                                                  color: Colors.black),
-                                            )
-                                          ]),
-                                    ),
-                                  ),
-                                ),
-                            ],
-                          );
-                        }),
                     Row(
                       children: [
                         Container(
@@ -359,14 +271,13 @@ class _DetailVideoState extends State<DetailVideo> {
                           margin: EdgeInsets.only(bottom: 10, left: 10),
                           child: IconButton(
                               onPressed: () {
-                                print(messages);
-                                setState(() {
-                                  _comment = Comment(
-                                      userId: userId,
-                                      exerciseId: widget.id,
-                                      comment: commentController.text);
-                                });
-                                comment();
+                                var comment = ExerciseComment(
+                                  exerciseId: widget.id,
+                                  comment: commentController.text,
+                                  name: user?.displayName ?? 'Người dùng',
+                                  image: user?.photoURL ?? '',
+                                );
+                                exerciseController.comment(comment);
                                 commentController.clear();
                                 FocusScope.of(context).unfocus();
                               },
@@ -376,23 +287,68 @@ class _DetailVideoState extends State<DetailVideo> {
                               )),
                         ),
                       ],
-                    )
+                    ),
+                    Obx(
+                      () => Wrap(
+                        children: List.generate(
+                          exerciseController.exerciseCommentList.length,
+                          (index) {
+                            var comment =
+                                exerciseController.exerciseCommentList[index];
+                            return Column(
+                              children: [
+                                ListTile(
+                                  minLeadingWidth: 2,
+                                  leading: CircleAvatar(
+                                      radius: 20,
+                                      backgroundImage: NetworkImage(
+                                        comment.image ??
+                                            'https://cdn-icons-png.flaticon.com/512/149/149071.png',
+                                      )),
+                                  title: Container(
+                                    margin: EdgeInsets.symmetric(vertical: 10),
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 10),
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(15),
+                                        color: Colors.grey[200]),
+                                    child: RichText(
+                                      text: TextSpan(
+                                          text: '${comment.name}\n',
+                                          style: TextStyle(
+                                              fontSize: 15,
+                                              fontFamily: 'Poppins-SemiBold',
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.black),
+                                          children: [
+                                            TextSpan(
+                                              text: comment.comment,
+                                              style: TextStyle(
+                                                  height: 1.5,
+                                                  fontSize: 17,
+                                                  fontFamily:
+                                                      'PragatiNarrow-Regular',
+                                                  fontWeight: FontWeight.normal,
+                                                  color: Colors.black),
+                                            )
+                                          ]),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            );
+                          },
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
                   ],
                 ),
               ),
             ),
           );
         });
-  }
-
-  Future<void> comment() async {
-    channel.sink.add(exerciseCommentModelToJson(_comment));
-  }
-
-  void share(BuildContext context, String link) {
-    final RenderBox box = context.findRenderObject() as RenderBox;
-    Share.share(link,
-        subject: 'Fit Body app',
-        sharePositionOrigin: box.localToGlobal(Offset.zero) & box.size);
   }
 }

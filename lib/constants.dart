@@ -7,5 +7,10 @@ const kBackgroundColor = Color(0xFFE5E5E5);
 const kBMI_Caculator = Color(0xFFDAD2D2);
 
 const double kDefaultPadding = 20.0;
-const String baseUrl = 'http://192.168.1.36:3000';
-const String baseWsUrl = 'ws://192.168.1.36:3000';
+
+const mondayConts = 'monday';
+const tuesdayConts = 'tuesday';
+const wednesdayConts = 'wednesday';
+const thursdayConts = 'thursday';
+const fridayConts = 'friday';
+const saturdayConts = 'saturday';

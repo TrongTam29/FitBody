@@ -22,11 +22,9 @@ class Exercise {
     this.exerciseBreak,
     this.detail,
     this.muscleGroupId,
-    this.createdAt,
-    this.updatedAt,
   });
 
-  int? id;
+  String? id;
   String? name;
   String? link;
   String? image;
@@ -35,11 +33,9 @@ class Exercise {
   String? exerciseBreak;
   String? detail;
   int? muscleGroupId;
-  DateTime? createdAt;
-  DateTime? updatedAt;
 
   factory Exercise.fromJson(DocumentSnapshot json) => Exercise(
-        id: json["id"],
+        id: json.id,
         name: json["name"],
         link: json["link"],
         image: json["image"],
@@ -48,8 +44,6 @@ class Exercise {
         exerciseBreak: json["break"],
         detail: json["detail"],
         muscleGroupId: json["muscleGroupId"],
-        createdAt: DateTime.parse(json["createdAt"]),
-        updatedAt: DateTime.parse(json["updatedAt"]),
       );
 
   Map<String, dynamic> toJson() => {
@@ -62,7 +56,5 @@ class Exercise {
         "break": exerciseBreak,
         "detail": detail,
         "muscleGroupId": muscleGroupId,
-        "createdAt": createdAt!.toIso8601String(),
-        "updatedAt": updatedAt!.toIso8601String(),
       };
 }

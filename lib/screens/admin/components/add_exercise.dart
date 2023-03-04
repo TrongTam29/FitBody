@@ -188,10 +188,8 @@ class _AddExerciseState extends State<AddExercise> {
               breakTime = breakTimeController.text;
               detail = detailController.text;
               muscleId = int.parse((muscleGroupIDController.text).toString());
-              setState(() {
-                exerciseController.postExercise(name, link, image, rep, set,
-                    breakTime, detail, muscleId ?? 1);
-              });
+              // exerciseController.postExercise(name, link, image, rep, set,
+              //     breakTime, detail, muscleId ?? 1);
             },
             child: Text('Done'),
             style: ButtonStyle(

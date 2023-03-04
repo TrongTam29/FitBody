@@ -1,28 +1,17 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:get/state_manager.dart';
 import 'package:my_app/model/equipment/equipment_model.dart';
-import 'equipment_service.dart';
 
 class EquipmentController extends GetxController {
-  var isLoading = true.obs;
-  var equipmentList = List<Equipment>.generate(100, (index) => Equipment()).obs;
-  // List<equipment> equipmentList = [];
+  CollectionReference _equipmentCollection =
+      FirebaseFirestore.instance.collection("WorkoutEquipment");
 
-  @override
-  void onInit() {
-    fetchEquipment();
-    super.onInit();
-  }
+  RxList<Equipment> equipmentList = RxList<Equipment>([]);
 
-  void fetchEquipment() async {
-    try {
-      isLoading(true);
-      var equipments = await Services.fetchData();
-      if (equipments != null) {
-        equipmentList.value = equipments;
-      }
-    } finally {
-      isLoading(false);
-    }
+  void getEquipments() {
+    equipmentList.bindStream(_equipmentCollection
+        .snapshots()
+        .map((query) => query.docs.map((e) => Equipment.fromJson(e)).toList()));
   }
 }

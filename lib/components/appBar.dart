@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 // ignore: camel_case_types
 class AppBar_Components extends StatelessWidget {
@@ -12,7 +13,9 @@ class AppBar_Components extends StatelessWidget {
       centerTitle: true,
       leading: IconButton(
         icon: Icon(Icons.chevron_left_outlined),
-        onPressed: () {},
+        onPressed: () {
+          Get.back();
+        },
         tooltip: 'Back',
         iconSize: 30,
       ),

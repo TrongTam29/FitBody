@@ -1,7 +1,6 @@
 import 'package:get/get.dart';
 import 'package:get/state_manager.dart';
 import 'package:my_app/model/nutrition/nutrition.dart';
-import 'nutrition_service.dart';
 
 class NutritionController extends GetxController {
   var isLoading = true.obs;
@@ -14,12 +13,12 @@ class NutritionController extends GetxController {
 
   void fetchNutrition(int nutritionId, String nameDay) async {
     try {
-      isLoading(true);
-      var nutritions = await NutritionServices.fetchData(nutritionId, nameDay);
-      if (nutritions != null) {
-        nutritionObj.value = nutritions;
-        // return nutritions;
-      }
+      // isLoading(true);
+      // var nutritions = await NutritionServices.fetchData(nutritionId, nameDay);
+      // if (nutritions != null) {
+      //   nutritionObj.value = nutritions;
+      //   // return nutritions;
+      // }
     } finally {
       isLoading(false);
     }

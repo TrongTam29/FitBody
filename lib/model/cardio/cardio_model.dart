@@ -1,16 +1,4 @@
-// To parse this JSON data, do
-//
-//     final cardio = cardioFromJson(jsonString);
-
-import 'dart:convert';
-
-List<Cardio> cardioFromJson(String str) =>
-    List<Cardio>.from(json.decode(str).map((x) => Cardio.fromJson(x)));
-
-Cardio cardioModelFromJson(String str) => Cardio.fromJson(json.decode(str));
-
-String cardioToJson(List<Cardio> data) =>
-    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Cardio {
   Cardio({
@@ -22,11 +10,9 @@ class Cardio {
     this.exerTime,
     this.breakTime,
     this.focus,
-    this.createdAt,
-    this.updatedAt,
   });
 
-  int? id;
+  String? id;
   String? name;
   String? image;
   String? link;
@@ -34,11 +20,9 @@ class Cardio {
   String? exerTime;
   String? breakTime;
   String? focus;
-  DateTime? createdAt;
-  DateTime? updatedAt;
 
-  factory Cardio.fromJson(Map<String, dynamic> json) => Cardio(
-        id: json["id"],
+  factory Cardio.fromJson(DocumentSnapshot json) => Cardio(
+        id: json.id,
         name: json["name"],
         image: json["image"],
         link: json["link"],
@@ -46,8 +30,6 @@ class Cardio {
         exerTime: json["exerTime"],
         breakTime: json["breakTime"],
         focus: json["focus"],
-        createdAt: DateTime.parse(json["createdAt"]),
-        updatedAt: DateTime.parse(json["updatedAt"]),
       );
 
   Map<String, dynamic> toJson() => {
@@ -59,7 +41,5 @@ class Cardio {
         "exerTime": exerTime,
         "breakTime": breakTime,
         "focus": focus,
-        "createdAt": createdAt!.toIso8601String(),
-        "updatedAt": updatedAt!.toIso8601String(),
       };
 }

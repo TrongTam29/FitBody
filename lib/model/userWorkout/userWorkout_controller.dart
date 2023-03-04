@@ -1,65 +1,55 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:my_app/model/userWorkout/userWorkout_model.dart';
-import 'package:my_app/model/userWorkout/userWorkout_service.dart';
 
 class UserWorkoutController extends GetxController {
-  var isLoading = true.obs;
-  // var cardioList = List<UserWorkout>.generate(100, (index) => UserWorkout()).obs;
+  CollectionReference _userworkoutCollection =
+      FirebaseFirestore.instance.collection("UserWorkout");
+
+  RxList<UserWorkout> userworkoutList = RxList<UserWorkout>([]);
   Rx<UserWorkout> userWorkoutObj = UserWorkout().obs;
 
-  @override
-  void onInit() {
-    super.onInit();
-  }
-
-  void fetchWorkout(String id) async {
-    try {
-      isLoading(true);
-      var userWorkout = await UserWorkoutService.fetchData(id);
-      if (userWorkout != null) {
-        userWorkoutObj.value = userWorkout;
+  Future<void> getUserWorkouts(String userId) async {
+    _userworkoutCollection
+        .where('userId', isEqualTo: userId)
+        .get()
+        .then((value) {
+      if (value.docs.isNotEmpty) {
+        userWorkoutObj.value = UserWorkout.fromJson(value.docs.first);
+        print(userWorkoutObj.value.toJson());
       }
-    } finally {
-      isLoading(false);
-    }
+    });
   }
 
-  Future<String?> findWorkout(String userId) async {
-    var userWorkout = await UserWorkoutService.checkUserWorkout(userId);
-    return userWorkout;
+  void createUserWorkout(String userId) async {
+    await _userworkoutCollection.add(UserWorkout(userId: userId).toJson());
   }
 
-  void createUserWorkout(String userId) {
-    UserWorkoutService.createUserWorkout(userId);
+  void updateWorkout(String id, UserWorkout model) {
+    _userworkoutCollection.doc(id).set(model.toJson());
   }
 
-  void updateWorkout(String userId, List monday, List tuesday, List wednesday,
-      List thursday, List friday, List saturday) {
-    UserWorkoutService.updateWorkout(
-        userId, monday, tuesday, wednesday, thursday, friday, saturday);
+  void updateDayWorkout(String id, String dayName, List<String> dayList) {
+    _userworkoutCollection.doc(id).update({dayName: dayList});
   }
 
-  void updateMonday(String userId, List monday) {
-    UserWorkoutService.updateMonday(userId, monday);
-  }
+  // void updateTuesday(String userId, List tuesday) {
+  //   UserWorkoutService.updateTuesday(userId, tuesday);
+  // }
 
-  void updateTuesday(String userId, List tuesday) {
-    UserWorkoutService.updateTuesday(userId, tuesday);
-  }
+  // void updateWednesday(String userId, List wednesday) {
+  //   UserWorkoutService.updateWednesday(userId, wednesday);
+  // }
 
-  void updateWednesday(String userId, List wednesday) {
-    UserWorkoutService.updateWednesday(userId, wednesday);
-  }
+  // void updateThursday(String userId, List thursday) {
+  //   UserWorkoutService.updateThursday(userId, thursday);
+  // }
 
-  void updateThursday(String userId, List thursday) {
-    UserWorkoutService.updateThursday(userId, thursday);
-  }
+  // void updateFriday(String userId, List friday) {
+  //   UserWorkoutService.updateFriday(userId, friday);
+  // }
 
-  void updateFriday(String userId, List friday) {
-    UserWorkoutService.updateFriday(userId, friday);
-  }
-
-  void updateSaturday(String userId, List saturday) {
-    UserWorkoutService.updateSaturday(userId, saturday);
-  }
+  // void updateSaturday(String userId, List saturday) {
+  //   UserWorkoutService.updateSaturday(userId, saturday);
+  // }
 }

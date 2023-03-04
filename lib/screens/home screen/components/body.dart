@@ -36,27 +36,16 @@ class MethodsInBody extends StatefulWidget {
 
 class _MethodsInBodyState extends State<MethodsInBody> {
   UserWorkoutController workoutController = Get.put(UserWorkoutController());
-  UserController userController = Get.put(UserController());
+  UserController userController = Get.find();
   User? user = FirebaseAuth.instance.currentUser;
   late String userEmail = user?.email ?? 'username';
   @override
   void initState() {
     super.initState();
-    // takeUserId();
+    userController.findUser(userEmail, onDone: () {
+      workoutController.getUserWorkouts(userController.userObj.value.id ?? '');
+    });
   }
-
-  // void takeUserId() {
-  //   if (userEmail != 'username') {
-  //     userController.findUser(user!.email!).then((result) {
-  //       workoutController.findWorkout(result!.id!).then((value) {
-  //         if (value == 'true') {
-  //           workoutController.createUserWorkout(result.id!);
-  //         }
-  //       });
-  //     });
-  //   } else
-  //     print('Username null');
-  // }
 
   @override
   Widget build(BuildContext context) {

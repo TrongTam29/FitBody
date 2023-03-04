@@ -29,7 +29,6 @@ class GgLoginController extends GetxController {
   }
 
   Future<void> logoutGoogle() async {
-    print('logoutGoogle');
     googleAccount.value = await googleSignIn.signOut();
     auth.signOut();
   }
@@ -49,7 +48,7 @@ class GgLoginController extends GetxController {
 
   logOut() async {
     var prefs = await SharedPreferences.getInstance();
-    print('Removed ');
     await prefs.remove('uid');
+    await prefs.remove('userId');
   }
 }

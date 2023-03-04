@@ -1,15 +1,15 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:my_app/components/appBar.dart';
 import 'package:my_app/constants.dart';
 import 'package:my_app/model/exercise/exercise_controller.dart';
-import 'package:my_app/model/user/user_controller.dart';
 import 'package:my_app/model/userWorkout/userWorkout_controller.dart';
+import 'package:my_app/model/userWorkout/userWorkout_model.dart';
 import 'package:my_app/screens/detail%20video/detail_video.dart';
 import 'package:my_app/screens/hello%20screen/hello_Screen.dart';
+
+import '../../model/user/user_controller.dart';
 
 class ListVideo extends StatefulWidget {
   const ListVideo({required this.muscleName, required this.idMuscle});
@@ -22,40 +22,23 @@ class ListVideo extends StatefulWidget {
 
 class _ListVideoState extends State<ListVideo> {
   final ExerciseController exerciseController = Get.put(ExerciseController());
-  UserWorkoutController workoutController = Get.put(UserWorkoutController());
-  UserController userController = Get.put(UserController());
+  UserWorkoutController workoutController = Get.find();
+  UserController userController = Get.find();
   User? user = FirebaseAuth.instance.currentUser;
-  late String userEmail = user?.email ?? 'username';
   late String userId;
+  late String userEmail = user?.email ?? 'username';
   @override
   void initState() {
     super.initState();
-    exerciseController.fetchExercise(widget.idMuscle);
-    print(userEmail);
-    if (userEmail != 'username')
-      takeUserId();
-    else
-      print(userEmail);
+    exerciseController.getExercises(widget.idMuscle);
   }
 
-  void takeUserId() {
-    if (userEmail != 'username') {
-      userController.findUser(user!.email!).then((result) {
-        workoutController.fetchWorkout(result!.id!);
-        setState(() {
-          userId = result.id!;
-        });
-      });
-    } else
-      print('object');
-  }
-
-  var mondayList;
-  var tuesdayList;
-  var wednesdayList;
-  var thursdayList;
-  var fridayList;
-  var saturdayList;
+  List<String>? mondayList;
+  List<String>? tuesdayList;
+  List<String>? wednesdayList;
+  List<String>? thursdayList;
+  List<String>? fridayList;
+  List<String>? saturdayList;
 
   @override
   Widget build(BuildContext context) {
@@ -69,12 +52,7 @@ class _ListVideoState extends State<ListVideo> {
       ),
       body: SafeArea(
         child: Obx(() {
-          if (exerciseController.isLoading.value &&
-              workoutController.isLoading.value)
-            return Center(
-              child: CupertinoActivityIndicator(),
-            );
-          else {
+          {
             mondayList = workoutController.userWorkoutObj.value.monday ?? [];
             tuesdayList = workoutController.userWorkoutObj.value.tuesday ?? [];
             wednesdayList =
@@ -84,6 +62,7 @@ class _ListVideoState extends State<ListVideo> {
             fridayList = workoutController.userWorkoutObj.value.friday ?? [];
             saturdayList =
                 workoutController.userWorkoutObj.value.saturday ?? [];
+            print(exerciseController.exerciseList);
             return Container(
               margin: EdgeInsets.only(bottom: 20),
               child: ListView.builder(
@@ -172,12 +151,12 @@ class _ListVideoState extends State<ListVideo> {
                                                         mondayCheck = value!,
                                                         if (value = true)
                                                           {
-                                                            mondayList!
-                                                                .add(item.link!)
+                                                            mondayList?.add(
+                                                                item.link ?? '')
                                                           }
                                                         else
                                                           {
-                                                            mondayList!.remove(
+                                                            mondayList?.remove(
                                                                 item.link)
                                                           }
                                                       })),
@@ -193,12 +172,12 @@ class _ListVideoState extends State<ListVideo> {
                                                         tuesdayCheck = value!,
                                                         if (value = true)
                                                           {
-                                                            tuesdayList!
-                                                                .add(item.link!)
+                                                            tuesdayList?.add(
+                                                                item.link ?? '')
                                                           }
                                                         else
                                                           {
-                                                            tuesdayList!.remove(
+                                                            tuesdayList?.remove(
                                                                 item.link)
                                                           }
                                                       })),
@@ -214,13 +193,13 @@ class _ListVideoState extends State<ListVideo> {
                                                         wednesdayCheck = value!,
                                                         if (value = true)
                                                           {
-                                                            wednesdayList!
-                                                                .add(item.link!)
+                                                            wednesdayList?.add(
+                                                                item.link ?? '')
                                                           }
                                                         else
                                                           {
-                                                            wednesdayList!
-                                                                .remove(
+                                                            wednesdayList
+                                                                ?.remove(
                                                                     item.link)
                                                           }
                                                       })),
@@ -236,13 +215,13 @@ class _ListVideoState extends State<ListVideo> {
                                                         thusdayCheck = value!,
                                                         if (value = true)
                                                           {
-                                                            thursdayList!
-                                                                .add(item.link!)
+                                                            thursdayList?.add(
+                                                                item.link ?? '')
                                                           }
                                                         else
                                                           {
-                                                            thursdayList!
-                                                                .remove(
+                                                            thursdayList
+                                                                ?.remove(
                                                                     item.link)
                                                           }
                                                       })),
@@ -258,12 +237,12 @@ class _ListVideoState extends State<ListVideo> {
                                                         fridayCheck = value!,
                                                         if (value = true)
                                                           {
-                                                            fridayList!
-                                                                .add(item.link!)
+                                                            fridayList?.add(
+                                                                item.link ?? '')
                                                           }
                                                         else
                                                           {
-                                                            fridayList!.remove(
+                                                            fridayList?.remove(
                                                                 item.link)
                                                           }
                                                       })),
@@ -279,27 +258,36 @@ class _ListVideoState extends State<ListVideo> {
                                                         saturdayCheck = value!,
                                                         if (value = true)
                                                           {
-                                                            saturdayList!
-                                                                .add(item.link!)
+                                                            saturdayList?.add(
+                                                                item.link ?? '')
                                                           }
                                                         else
                                                           {
-                                                            saturdayList!
-                                                                .remove(
+                                                            saturdayList
+                                                                ?.remove(
                                                                     item.link)
                                                           }
                                                       })),
                                           ElevatedButton(
                                             onPressed: () {
                                               Get.back();
+
                                               workoutController.updateWorkout(
-                                                userId,
-                                                mondayList,
-                                                tuesdayList,
-                                                wednesdayList,
-                                                thursdayList,
-                                                fridayList,
-                                                saturdayList,
+                                                workoutController.userWorkoutObj
+                                                        .value.id ??
+                                                    '',
+                                                UserWorkout(
+                                                  id: workoutController
+                                                      .userWorkoutObj.value.id,
+                                                  monday: mondayList,
+                                                  tuesday: tuesdayList,
+                                                  wednesday: wednesdayList,
+                                                  thursday: thursdayList,
+                                                  friday: fridayList,
+                                                  saturday: saturdayList,
+                                                  userId: userController
+                                                      .userObj.value.id,
+                                                ),
                                               );
                                             },
                                             child: Text(
@@ -315,14 +303,14 @@ class _ListVideoState extends State<ListVideo> {
                                                   MaterialStateProperty.all(
                                                       Color(0xE68F839C)),
                                               shape: MaterialStateProperty.all<
-                                                      RoundedRectangleBorder>(
-                                                  RoundedRectangleBorder(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              20),
-                                                      side: BorderSide(
-                                                          color:
-                                                              Colors.white))),
+                                                  RoundedRectangleBorder>(
+                                                RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(20),
+                                                  side: BorderSide(
+                                                      color: Colors.white),
+                                                ),
+                                              ),
                                             ),
                                           ),
                                         ],
