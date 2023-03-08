@@ -3,6 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:my_app/screens/detail%20cardio/component/timer.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
+import '../../constants.dart';
+
 class DetailCardio extends StatefulWidget {
   DetailCardio(
       {required this.url,
@@ -95,7 +97,7 @@ class _DetailCardioState extends State<DetailCardio> {
                     SizedBox(
                       height: size.height * 0.1 - 80,
                     ),
-                    Divider(thickness: 1, color: Color(0xE68F839C)),
+                    Divider(thickness: 1, color: kPrimaryColor),
                     Row(
                       children: [
                         TextInfo(
@@ -158,7 +160,7 @@ class TextInfo extends StatelessWidget {
       child: RichText(
         text: TextSpan(
             text: nameInfo + '\n',
-            style: TextStyle(fontSize: 18, color: Color(0xE68F839C)),
+            style: TextStyle(fontSize: 18, color: kPrimaryColor),
             children: [
               TextSpan(
                   text: info,

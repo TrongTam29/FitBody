@@ -14,4 +14,16 @@ class CardioController extends GetxController {
         .snapshots()
         .map((query) => query.docs.map((e) => Cardio.fromJson(e)).toList()));
   }
+
+  void postCardio(Cardio cardioModel) {
+    _cardioCollection.add(cardioModel.toJson());
+  }
+
+  void updateCardio(String id, Cardio model) {
+    _cardioCollection.doc(id).set(model.toJson());
+  }
+
+  void remove(String id) {
+    _cardioCollection.doc(id).delete();
+  }
 }

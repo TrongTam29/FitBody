@@ -132,7 +132,7 @@ class _MethodsInBodyState extends State<MethodsInBody> {
                                                   horizontal: 25)),
                                           backgroundColor:
                                               MaterialStateProperty.all(
-                                                  Color(0xE68F839C)),
+                                                  kPrimaryColor),
                                           shape: MaterialStateProperty.all<
                                                   RoundedRectangleBorder>(
                                               RoundedRectangleBorder(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:my_app/screens/admin/components/add_cardio.dart';
 import 'package:my_app/screens/admin/components/add_exercise.dart';
 
@@ -15,7 +16,9 @@ class Admin extends StatelessWidget {
           centerTitle: true,
           leading: IconButton(
             icon: Icon(Icons.chevron_left_outlined),
-            onPressed: () {},
+            onPressed: () {
+              Get.back();
+            },
             tooltip: 'Back',
             iconSize: 30,
           ),

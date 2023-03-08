@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:my_app/constants.dart';
 import 'package:my_app/model/exercise/exercise_controller.dart';
 import 'package:my_app/model/exerciseComment/exerciseComment_model.dart';
-import 'package:my_app/model/user/user_controller.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 

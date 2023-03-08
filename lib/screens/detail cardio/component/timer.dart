@@ -2,6 +2,8 @@ import 'dart:async';
 import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 
+import '../../../constants.dart';
+
 class TimerApp extends StatefulWidget {
   TimerApp();
 
@@ -179,7 +181,7 @@ class _TimerAppState extends State<TimerApp> {
               startTimer();
           },
           style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all(Color(0xE68F839C)),
+            backgroundColor: MaterialStateProperty.all(kPrimaryColor),
             shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                 RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
@@ -206,7 +208,7 @@ class LabelText extends StatelessWidget {
       padding: EdgeInsets.all(25),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(25),
-        color: Color(0xE68F839C),
+        color: kPrimaryColor,
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,

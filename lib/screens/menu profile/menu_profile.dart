@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_app/login/FbLogin_controller.dart';
 import 'package:my_app/login/GgLogin_controller.dart';
+import 'package:my_app/model/nutrition/nutrition.dart';
+import 'package:my_app/screens/admin/admin.dart';
 import 'package:my_app/screens/alarm/alarm_view.dart';
 import 'package:my_app/screens/hello%20screen/hello_Screen.dart';
 import 'package:my_app/screens/home%20screen/home_main.dart';
@@ -104,7 +106,9 @@ class _MenuProfileState extends State<MenuProfile> {
                   ),
                 ),
                 ListTile(
-                  onTap: () {},
+                  onTap: () {
+                    Get.to(Nutrition());
+                  },
                   leading: Icon(
                     Icons.build,
                     color: Colors.black,
@@ -114,8 +118,21 @@ class _MenuProfileState extends State<MenuProfile> {
                     style: TextStyle(color: Colors.black),
                   ),
                 ),
+                ListTile(
+                  onTap: () {
+                    Get.to(Admin());
+                  },
+                  leading: Icon(
+                    Icons.manage_accounts_rounded,
+                    color: Colors.black,
+                  ),
+                  title: Text(
+                    'Admin',
+                    style: TextStyle(color: Colors.black),
+                  ),
+                ),
                 SizedBox(
-                  height: size.height * 0.4 - 20,
+                  height: size.height * 0.34,
                 ),
                 ListTile(
                   onTap: () {

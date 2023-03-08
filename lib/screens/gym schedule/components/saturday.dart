@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:my_app/screens/list%20cardio/list_cardio.dart';
 import 'package:my_app/screens/list%20video/list_video.dart';
 
+import '../../../constants.dart';
+
 class Saturday extends StatelessWidget {
   const Saturday({Key? key}) : super(key: key);
 
@@ -39,7 +41,7 @@ class Saturday extends StatelessWidget {
                       height: size.height * 0.1 - 30,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
-                        color: Color(0xE68F839C),
+                        color: kPrimaryColor,
                       ),
                       child: Center(
                         child: Text(
@@ -68,7 +70,7 @@ class Saturday extends StatelessWidget {
                                   offset: Offset(0, 3),
                                 ),
                               ],
-                              border: Border.all(color: Color(0xE68F839C))),
+                              border: Border.all(color: kPrimaryColor)),
                           child: Column(
                             children: [
                               SizedBox(
@@ -90,7 +92,7 @@ class Saturday extends StatelessWidget {
                           left: 1.5,
                           child: Container(
                             decoration: BoxDecoration(
-                                color: Color(0xCC8F839C),
+                                color: kPrimaryColor,
                                 borderRadius: BorderRadius.circular(20)),
                             child: Padding(
                               padding: const EdgeInsets.symmetric(
@@ -125,7 +127,7 @@ class Saturday extends StatelessWidget {
                                   offset: Offset(0, 3),
                                 ),
                               ],
-                              border: Border.all(color: Color(0xE68F839C))),
+                              border: Border.all(color: kPrimaryColor)),
                           child: Column(
                             children: [
                               SizedBox(
@@ -156,7 +158,7 @@ class Saturday extends StatelessWidget {
                           left: 1.5,
                           child: Container(
                             decoration: BoxDecoration(
-                                color: Color(0xCC8F839C),
+                                color: kPrimaryColor,
                                 borderRadius: BorderRadius.circular(20)),
                             child: Padding(
                               padding: const EdgeInsets.symmetric(

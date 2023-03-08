@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_native_timezone/flutter_native_timezone.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:my_app/main.dart';
 import 'package:my_app/screens/alarm/alarm_helper.dart';
@@ -58,13 +59,22 @@ class _AlarmPageState extends State<AlarmPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Text(
-              'Alarm',
-              style: TextStyle(
-                  fontFamily: 'avenir',
-                  fontWeight: FontWeight.w700,
-                  color: CustomColors.primaryTextColor,
-                  fontSize: 24),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                IconButton(
+                    onPressed: () => Get.back(),
+                    icon: Icon(Icons.chevron_left_outlined)),
+                Text(
+                  'Alarm',
+                  style: TextStyle(
+                      fontFamily: 'avenir',
+                      fontWeight: FontWeight.w700,
+                      color: CustomColors.primaryTextColor,
+                      fontSize: 24),
+                ),
+                Container()
+              ],
             ),
             Expanded(
               child: FutureBuilder<List<AlarmInfo>>(
@@ -169,7 +179,7 @@ class _AlarmPageState extends State<AlarmPage> {
                               decoration: BoxDecoration(
                                 color: CustomColors.clockBG,
                                 borderRadius:
-                                    BorderRadius.all(Radius.circular(24)),
+                                    BorderRadius.all(Radius.circular(15)),
                               ),
                               child: ElevatedButton(
                                 onPressed: () {

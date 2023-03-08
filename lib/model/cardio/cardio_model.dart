@@ -33,7 +33,6 @@ class Cardio {
       );
 
   Map<String, dynamic> toJson() => {
-        "id": id,
         "name": name,
         "image": image,
         "link": link,

@@ -32,24 +32,4 @@ class UserWorkoutController extends GetxController {
   void updateDayWorkout(String id, String dayName, List<String> dayList) {
     _userworkoutCollection.doc(id).update({dayName: dayList});
   }
-
-  // void updateTuesday(String userId, List tuesday) {
-  //   UserWorkoutService.updateTuesday(userId, tuesday);
-  // }
-
-  // void updateWednesday(String userId, List wednesday) {
-  //   UserWorkoutService.updateWednesday(userId, wednesday);
-  // }
-
-  // void updateThursday(String userId, List thursday) {
-  //   UserWorkoutService.updateThursday(userId, thursday);
-  // }
-
-  // void updateFriday(String userId, List friday) {
-  //   UserWorkoutService.updateFriday(userId, friday);
-  // }
-
-  // void updateSaturday(String userId, List saturday) {
-  //   UserWorkoutService.updateSaturday(userId, saturday);
-  // }
 }

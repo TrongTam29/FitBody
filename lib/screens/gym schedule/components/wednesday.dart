@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:my_app/constants.dart';
 import 'package:my_app/screens/list%20video/list_video.dart';
 
 class Wednesday extends StatelessWidget {
@@ -38,7 +39,7 @@ class Wednesday extends StatelessWidget {
                       height: size.height * 0.1 - 30,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
-                        color: Color(0xE68F839C),
+                        color: kPrimaryColor,
                       ),
                       child: Center(
                         child: Text(
@@ -67,7 +68,7 @@ class Wednesday extends StatelessWidget {
                                   offset: Offset(0, 3),
                                 ),
                               ],
-                              border: Border.all(color: Color(0xE68F839C))),
+                              border: Border.all(color: kPrimaryColor)),
                           child: Column(
                             children: [
                               SizedBox(
@@ -105,7 +106,7 @@ class Wednesday extends StatelessWidget {
                           left: 1.5,
                           child: Container(
                             decoration: BoxDecoration(
-                                color: Color(0xCC8F839C),
+                                color: kPrimaryColor,
                                 borderRadius: BorderRadius.circular(20)),
                             child: Padding(
                               padding: const EdgeInsets.symmetric(
@@ -140,7 +141,7 @@ class Wednesday extends StatelessWidget {
                                   offset: Offset(0, 3),
                                 ),
                               ],
-                              border: Border.all(color: Color(0xE68F839C))),
+                              border: Border.all(color: kPrimaryColor)),
                           child: Column(
                             children: [
                               SizedBox(
@@ -171,7 +172,7 @@ class Wednesday extends StatelessWidget {
                           left: 1.5,
                           child: Container(
                             decoration: BoxDecoration(
-                                color: Color(0xCC8F839C),
+                                color: kPrimaryColor,
                                 borderRadius: BorderRadius.circular(20)),
                             child: Padding(
                               padding: const EdgeInsets.symmetric(

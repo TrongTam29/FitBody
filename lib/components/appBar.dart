@@ -30,17 +30,7 @@ class AppBar_Components extends StatelessWidget {
           ),
         ),
       ),
-      actions: [
-        IconButton(
-          icon: Icon(Icons.more_horiz_outlined),
-          onPressed: () {},
-          tooltip: 'Menu',
-          iconSize: 30,
-        ),
-        Padding(
-          padding: EdgeInsets.only(right: 15),
-        )
-      ],
+      actions: [],
     );
   }
 }

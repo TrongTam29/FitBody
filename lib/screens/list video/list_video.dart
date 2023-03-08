@@ -301,7 +301,7 @@ class _ListVideoState extends State<ListVideo> {
                                                           horizontal: 25)),
                                               backgroundColor:
                                                   MaterialStateProperty.all(
-                                                      Color(0xE68F839C)),
+                                                      kPrimaryColor),
                                               shape: MaterialStateProperty.all<
                                                   RoundedRectangleBorder>(
                                                 RoundedRectangleBorder(
@@ -349,7 +349,7 @@ class _ListVideoState extends State<ListVideo> {
                                                   horizontal: 25)),
                                           backgroundColor:
                                               MaterialStateProperty.all(
-                                                  Color(0xE68F839C)),
+                                                  kPrimaryColor),
                                           shape: MaterialStateProperty.all<
                                                   RoundedRectangleBorder>(
                                               RoundedRectangleBorder(

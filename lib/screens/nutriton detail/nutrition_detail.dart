@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 // import 'package:flutter_html/flutter_html.dart';
 import 'package:get/get.dart';
 import 'package:my_app/constants.dart';
@@ -11,7 +12,6 @@ class NutritionDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    NutritionController nutritionController = Get.put(NutritionController());
     return DefaultTabController(
       length: 7,
       child: Scaffold(
@@ -20,7 +20,9 @@ class NutritionDetail extends StatelessWidget {
           centerTitle: true,
           leading: IconButton(
             icon: Icon(Icons.chevron_left_outlined),
-            onPressed: () {},
+            onPressed: () {
+              Get.back();
+            },
             tooltip: 'Back',
             iconSize: 30,
           ),
@@ -64,31 +66,31 @@ class NutritionDetail extends StatelessWidget {
           children: [
             NutritionTab(
               nameDay: 'Monday',
-              nutritionId: 1,
+              nutritionId: nutritionId,
             ),
             NutritionTab(
-              nutritionId: 1,
+              nutritionId: nutritionId,
               nameDay: 'Tuesday',
             ),
             NutritionTab(
               nameDay: 'Wednesday',
-              nutritionId: 1,
+              nutritionId: nutritionId,
             ),
             NutritionTab(
               nameDay: 'Thursday',
-              nutritionId: 1,
+              nutritionId: nutritionId,
             ),
             NutritionTab(
               nameDay: 'Friday',
-              nutritionId: 1,
+              nutritionId: nutritionId,
             ),
             NutritionTab(
               nameDay: 'Staturday',
-              nutritionId: 1,
+              nutritionId: nutritionId,
             ),
             NutritionTab(
               nameDay: 'Sunday',
-              nutritionId: 1,
+              nutritionId: nutritionId,
             ),
           ],
         ),
@@ -111,9 +113,8 @@ class _NutritionTabState extends State<NutritionTab> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration.zero, () async {
-      nutritionController.fetchNutrition(widget.nutritionId, widget.nameDay);
-    });
+    nutritionController.getNutritionDay(
+        widget.nutritionId, widget.nameDay.toLowerCase());
   }
 
   @override
@@ -121,17 +122,12 @@ class _NutritionTabState extends State<NutritionTab> {
     return SafeArea(
       child: Obx(
         () {
-          if (nutritionController.isLoading.value)
-            return Center(
-              child: CupertinoActivityIndicator(),
-            );
-          else
-            return Container(
-                // child: Html(
-                //   data: nutritionController.nutritionObj.value.detail ??
-                //       ' <h1>The nutrition has not insert yet</h1>',
-                // ),
-                );
+          return Container(
+            child: Html(
+              data: nutritionController.nutritionObj.value.detail ??
+                  ' <h1>The nutrition has not insert yet</h1>',
+            ),
+          );
         },
       ),
     );

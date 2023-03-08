@@ -11,6 +11,7 @@ class ExerciseController extends GetxController {
       FirebaseFirestore.instance.collection("ExerciseComment");
 
   RxList<Exercise> exerciseList = RxList<Exercise>([]);
+  RxList<Exercise> allExerciseList = RxList<Exercise>([]);
   RxList<Exercise> userWorkoutList = RxList<Exercise>([]);
   RxList<ExerciseComment> exerciseCommentList = RxList<ExerciseComment>([]);
 
@@ -21,11 +22,23 @@ class ExerciseController extends GetxController {
         .map((query) => query.docs.map((e) => Exercise.fromJson(e)).toList()));
   }
 
-  // void postExercise(String name, String link, String image, String reps,
-  //     String sets, String exerciseBreak, String detail, int muscleGroupId) {
-  //   ExerciseService.postExercise(
-  //       name, link, image, reps, sets, exerciseBreak, detail, muscleGroupId);
-  // }
+  void getAllExercises() {
+    allExerciseList.bindStream(_exerciseCollection
+        .snapshots()
+        .map((query) => query.docs.map((e) => Exercise.fromJson(e)).toList()));
+  }
+
+  void postExercise(Exercise exerciseModel) {
+    _exerciseCollection.add(exerciseModel.toJson());
+  }
+
+  void updateExercise(String id, Exercise model) {
+    _exerciseCollection.doc(id).set(model.toJson());
+  }
+
+  void remove(String id) {
+    _exerciseCollection.doc(id).delete();
+  }
 
   void getExercisesComment(String exerciseId) {
     exerciseCommentList.bindStream(_exerciseCommentCollection

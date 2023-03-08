@@ -47,7 +47,6 @@ class Exercise {
       );
 
   Map<String, dynamic> toJson() => {
-        "id": id,
         "name": name,
         "link": link,
         "image": image,
