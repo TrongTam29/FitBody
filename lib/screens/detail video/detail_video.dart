@@ -84,8 +84,7 @@ class _DetailVideoState extends State<DetailVideo> {
           controller: _controller,
         ),
         builder: (context, player) {
-          var textStyle =
-              TextStyle(fontFamily: 'Poppins-SemiBold', fontSize: 24);
+          var textStyle = TextStyle(fontWeight: FontWeight.w500, fontSize: 20);
           return Scaffold(
             body: SingleChildScrollView(
               child: SafeArea(
@@ -129,26 +128,24 @@ class _DetailVideoState extends State<DetailVideo> {
                           margin: EdgeInsets.only(top: 15, bottom: 20),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(19)),
-                          color: Color(0xFFDFCDCD),
+                          color: Color(0xFFFDF9F9),
+                          // color: Colors.white,
                           elevation: 10,
                           child: Container(
                             width: size.width * 0.3 - 5,
-                            height: size.height * 0.2 - 20,
+                            height: size.height * 0.11,
                             child: Column(
                               children: [
                                 ListTile(
                                   title: Icon(Icons.access_alarm_outlined),
                                   trailing: Text(
                                     'Reps',
-                                    style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 20,
-                                        fontFamily: 'Poppins-SemiBold'),
+                                    style: textStyle,
                                   ),
                                 ),
-                                Padding(
-                                  padding: EdgeInsets.only(top: 20),
-                                ),
+                                // Padding(
+                                //   padding: EdgeInsets.only(top: 20),
+                                // ),
                                 Text(
                                   widget.reps,
                                   style: textStyle,
@@ -162,26 +159,20 @@ class _DetailVideoState extends State<DetailVideo> {
                           margin: EdgeInsets.only(top: 15, bottom: 20),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(19)),
-                          color: Color(0xFFD8D0E0),
+                          color: Color(0xFFFBFBFB),
                           elevation: 10,
                           child: Container(
                             width: size.width * 0.3 - 5,
-                            height: size.height * 0.2 - 20,
+                            height: size.height * 0.11,
                             child: Column(
                               children: [
                                 ListTile(
                                   title: Icon(Icons.fact_check_outlined),
-                                  trailing: Text(
-                                    'Sets',
-                                    style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 21,
-                                        fontFamily: 'Poppins-SemiBold'),
-                                  ),
+                                  trailing: Text('Sets', style: textStyle),
                                 ),
-                                Padding(
-                                  padding: EdgeInsets.only(top: 20),
-                                ),
+                                // Padding(
+                                //   padding: EdgeInsets.only(top: 20),
+                                // ),
                                 Text(
                                   widget.sets,
                                   style: textStyle,
@@ -195,11 +186,11 @@ class _DetailVideoState extends State<DetailVideo> {
                           margin: EdgeInsets.only(top: 15, bottom: 20),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(19)),
-                          color: Color(0xFFDAD2D2),
+                          color: Color(0xFFFFF8F8),
                           elevation: 10,
                           child: Container(
                             width: size.width * 0.3 - 5,
-                            height: size.height * 0.2 - 20,
+                            height: size.height * 0.11,
                             child: Column(
                               children: [
                                 ListTile(
@@ -209,20 +200,18 @@ class _DetailVideoState extends State<DetailVideo> {
                                   ),
                                   trailing: Text(
                                     'Break',
-                                    style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 20,
-                                        fontFamily: 'Poppins-SemiBold'),
+                                    style: textStyle,
                                   ),
                                 ),
-                                Padding(
-                                  padding: EdgeInsets.only(top: 20),
-                                ),
+                                // Padding(
+                                //   padding: EdgeInsets.only(top: 20),
+                                // ),
                                 Text(
                                   widget.breaks,
                                   style: TextStyle(
-                                      fontFamily: 'Poppins-SemiBold',
-                                      fontSize: 24),
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w500,
+                                  ),
                                   textAlign: TextAlign.center,
                                 ),
                               ],

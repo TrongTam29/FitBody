@@ -1,13 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:my_app/constants.dart';
 import 'package:my_app/login/FbLogin_controller.dart';
 import 'package:my_app/login/GgLogin_controller.dart';
-import 'package:my_app/model/nutrition/nutrition.dart';
 import 'package:my_app/screens/admin/admin.dart';
 import 'package:my_app/screens/alarm/alarm_view.dart';
 import 'package:my_app/screens/hello%20screen/hello_Screen.dart';
 import 'package:my_app/screens/home%20screen/home_main.dart';
+import 'package:my_app/screens/nitrition%20screen/nutrition_screen.dart';
 
 class MenuProfile extends StatefulWidget {
   const MenuProfile({Key? key}) : super(key: key);
@@ -82,7 +83,35 @@ class _MenuProfileState extends State<MenuProfile> {
                   ),
                 ),
                 ListTile(
-                  onTap: () {},
+                  onTap: () {
+                    Get.defaultDialog(
+                      title: 'Fit Body app',
+                      titleStyle: TextStyle(
+                        fontSize: 20,
+                        color: kPrimaryColor,
+                        fontWeight: FontWeight.w500,
+                      ),
+                      content: Column(
+                        children: [
+                          Text(
+                            'An application that guides gym, cardio at the gym center or at home and provides nutrition for users',
+                            textAlign: TextAlign.center,
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            'Version: 1.0.0',
+                            style: TextStyle(
+                                fontSize: 14,
+                                color: Colors.grey,
+                                fontStyle: FontStyle.italic),
+                            textAlign: TextAlign.center,
+                          ),
+                        ],
+                      ),
+                    );
+                  },
                   leading: Icon(
                     Icons.info,
                     color: Colors.black,
@@ -107,7 +136,7 @@ class _MenuProfileState extends State<MenuProfile> {
                 ),
                 ListTile(
                   onTap: () {
-                    Get.to(Nutrition());
+                    Get.to(NutritionScreen());
                   },
                   leading: Icon(
                     Icons.build,
@@ -118,19 +147,21 @@ class _MenuProfileState extends State<MenuProfile> {
                     style: TextStyle(color: Colors.black),
                   ),
                 ),
-                ListTile(
-                  onTap: () {
-                    Get.to(Admin());
-                  },
-                  leading: Icon(
-                    Icons.manage_accounts_rounded,
-                    color: Colors.black,
-                  ),
-                  title: Text(
-                    'Admin',
-                    style: TextStyle(color: Colors.black),
-                  ),
-                ),
+                user?.email == 'doananhtai9@gmail.com'
+                    ? ListTile(
+                        onTap: () {
+                          Get.to(Admin());
+                        },
+                        leading: Icon(
+                          Icons.manage_accounts_rounded,
+                          color: Colors.black,
+                        ),
+                        title: Text(
+                          'Admin',
+                          style: TextStyle(color: Colors.black),
+                        ),
+                      )
+                    : SizedBox(),
                 SizedBox(
                   height: size.height * 0.34,
                 ),

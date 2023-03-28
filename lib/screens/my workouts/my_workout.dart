@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_app/components/appBar.dart';
@@ -48,7 +47,7 @@ class _MyWorkoutState extends State<MyWorkout> {
                 mondayList = workoutController.userWorkoutObj.value.monday,
                 Get.to(
                   () => MyWorkoutDetail(
-                    listWorkout: mondayList,
+                    listWorkout: mondayList ?? [],
                     workoutDay: 'Monday',
                   ),
                 ),
@@ -65,7 +64,7 @@ class _MyWorkoutState extends State<MyWorkout> {
                 tuesdayList = workoutController.userWorkoutObj.value.tuesday,
                 Get.to(
                   () => MyWorkoutDetail(
-                    listWorkout: tuesdayList,
+                    listWorkout: tuesdayList ?? [],
                     workoutDay: 'Tuesday',
                   ),
                 ),
@@ -83,7 +82,7 @@ class _MyWorkoutState extends State<MyWorkout> {
                     workoutController.userWorkoutObj.value.wednesday,
                 Get.to(
                   () => MyWorkoutDetail(
-                    listWorkout: wednesdayList,
+                    listWorkout: wednesdayList ?? [],
                     workoutDay: 'Wednesday',
                   ),
                 ),
@@ -100,7 +99,7 @@ class _MyWorkoutState extends State<MyWorkout> {
                 thursdayList = workoutController.userWorkoutObj.value.thursday,
                 Get.to(
                   () => MyWorkoutDetail(
-                    listWorkout: thursdayList,
+                    listWorkout: thursdayList ?? [],
                     workoutDay: 'Thursday',
                   ),
                 ),
@@ -117,7 +116,7 @@ class _MyWorkoutState extends State<MyWorkout> {
                 fridayList = workoutController.userWorkoutObj.value.friday,
                 Get.to(
                   () => MyWorkoutDetail(
-                    listWorkout: fridayList,
+                    listWorkout: fridayList ?? [],
                     workoutDay: 'Friday',
                   ),
                 ),
@@ -134,7 +133,7 @@ class _MyWorkoutState extends State<MyWorkout> {
                 saturdayList = workoutController.userWorkoutObj.value.saturday;
                 await Get.to(
                   () => MyWorkoutDetail(
-                    listWorkout: saturdayList,
+                    listWorkout: saturdayList ?? [],
                     workoutDay: 'Saturday',
                   ),
                 );

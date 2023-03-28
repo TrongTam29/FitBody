@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:my_app/constants.dart';
 import 'package:my_app/login/FbLogin_controller.dart';
 import 'package:my_app/login/GgLogin_controller.dart';
 import 'package:my_app/model/user/user_controller.dart';
@@ -91,7 +92,7 @@ class _HelloScreenState extends State<HelloScreen> {
                               fontSize: 45,
                               fontFamily: 'Wellfleet',
                               fontWeight: FontWeight.w400,
-                              color: Colors.black),
+                              color: kPrimaryColor),
                           children: [
                             TextSpan(
                               text: 'Your Fitness starts here',

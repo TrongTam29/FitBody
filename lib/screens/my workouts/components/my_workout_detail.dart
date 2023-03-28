@@ -1,8 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_app/components/appBar.dart';
-import 'package:my_app/model/exercise/exercise.dart';
 import 'package:my_app/model/exercise/exercise_controller.dart';
 import 'package:my_app/model/user/user_controller.dart';
 import 'package:my_app/model/userWorkout/userWorkout_controller.dart';

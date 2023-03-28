@@ -17,7 +17,7 @@ class UserController extends GetxController {
       if (value.docs.isEmpty) {
         user.id = _user.doc().id;
         await _user.add(user.toJson());
-        _userWorkoutController.createUserWorkout(_user.doc().id);
+        _userWorkoutController.createUserWorkout(user.id ?? '');
       } else {
         var prefs = await SharedPreferences.getInstance();
         prefs.setString('userId', value.docs.first.id);

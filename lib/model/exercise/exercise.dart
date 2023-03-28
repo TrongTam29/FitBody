@@ -41,7 +41,7 @@ class Exercise {
         image: json["image"],
         reps: json["reps"],
         sets: json["sets"],
-        exerciseBreak: json["break"],
+        exerciseBreak: json["exerciseBreak"],
         detail: json["detail"],
         muscleGroupId: json["muscleGroupId"],
       );
@@ -52,7 +52,7 @@ class Exercise {
         "image": image,
         "reps": reps,
         "sets": sets,
-        "break": exerciseBreak,
+        "exerciseBreak": exerciseBreak,
         "detail": detail,
         "muscleGroupId": muscleGroupId,
       };
