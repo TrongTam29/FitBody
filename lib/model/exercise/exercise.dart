@@ -17,9 +17,9 @@ class Exercise {
     this.name,
     this.link,
     this.image,
-    this.reps,
-    this.sets,
-    this.exerciseBreak,
+    // this.reps,
+    // this.sets,
+    // this.exerciseBreak,
     this.detail,
     this.muscleGroupId,
   });
@@ -28,9 +28,9 @@ class Exercise {
   String? name;
   String? link;
   String? image;
-  String? reps;
-  String? sets;
-  String? exerciseBreak;
+  // String? reps;
+  // String? sets;
+  // String? exerciseBreak;
   String? detail;
   int? muscleGroupId;
 
@@ -39,9 +39,9 @@ class Exercise {
         name: json["name"],
         link: json["link"],
         image: json["image"],
-        reps: json["reps"],
-        sets: json["sets"],
-        exerciseBreak: json["exerciseBreak"],
+        // reps: json["reps"],
+        // sets: json["sets"],
+        // exerciseBreak: json["exerciseBreak"],
         detail: json["detail"],
         muscleGroupId: json["muscleGroupId"],
       );
@@ -50,9 +50,9 @@ class Exercise {
         "name": name,
         "link": link,
         "image": image,
-        "reps": reps,
-        "sets": sets,
-        "exerciseBreak": exerciseBreak,
+        // "reps": reps,
+        // "sets": sets,
+        // "exerciseBreak": exerciseBreak,
         "detail": detail,
         "muscleGroupId": muscleGroupId,
       };

@@ -13,17 +13,17 @@ class DetailVideo extends StatefulWidget {
     required this.id,
     required this.url,
     required this.nameExercise,
-    required this.breaks,
+    // required this.breaks,
     required this.detail,
-    required this.reps,
-    required this.sets,
+    // required this.reps,
+    // required this.sets,
   });
   final String id;
   final String url;
   final String nameExercise;
-  final String sets;
-  final String reps;
-  final String breaks;
+  // final String sets;
+  // final String reps;
+  // final String breaks;
   final String detail;
 
   @override
@@ -121,105 +121,105 @@ class _DetailVideoState extends State<DetailVideo> {
                           )),
                       subtitle: Text('Gym guide - Chest'),
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Card(
-                          margin: EdgeInsets.only(top: 15, bottom: 20),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(19)),
-                          color: Color(0xFFFDF9F9),
-                          // color: Colors.white,
-                          elevation: 10,
-                          child: Container(
-                            width: size.width * 0.3 - 5,
-                            height: size.height * 0.11,
-                            child: Column(
-                              children: [
-                                ListTile(
-                                  title: Icon(Icons.access_alarm_outlined),
-                                  trailing: Text(
-                                    'Reps',
-                                    style: textStyle,
-                                  ),
-                                ),
-                                // Padding(
-                                //   padding: EdgeInsets.only(top: 20),
-                                // ),
-                                Text(
-                                  widget.reps,
-                                  style: textStyle,
-                                  textAlign: TextAlign.center,
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                        Card(
-                          margin: EdgeInsets.only(top: 15, bottom: 20),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(19)),
-                          color: Color(0xFFFBFBFB),
-                          elevation: 10,
-                          child: Container(
-                            width: size.width * 0.3 - 5,
-                            height: size.height * 0.11,
-                            child: Column(
-                              children: [
-                                ListTile(
-                                  title: Icon(Icons.fact_check_outlined),
-                                  trailing: Text('Sets', style: textStyle),
-                                ),
-                                // Padding(
-                                //   padding: EdgeInsets.only(top: 20),
-                                // ),
-                                Text(
-                                  widget.sets,
-                                  style: textStyle,
-                                  textAlign: TextAlign.center,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        Card(
-                          margin: EdgeInsets.only(top: 15, bottom: 20),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(19)),
-                          color: Color(0xFFFFF8F8),
-                          elevation: 10,
-                          child: Container(
-                            width: size.width * 0.3 - 5,
-                            height: size.height * 0.11,
-                            child: Column(
-                              children: [
-                                ListTile(
-                                  title: Icon(
-                                    Icons.skip_next_outlined,
-                                    size: 30,
-                                  ),
-                                  trailing: Text(
-                                    'Break',
-                                    style: textStyle,
-                                  ),
-                                ),
-                                // Padding(
-                                //   padding: EdgeInsets.only(top: 20),
-                                // ),
-                                Text(
-                                  widget.breaks,
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                  textAlign: TextAlign.center,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    //   children: [
+                    //     Card(
+                    //       margin: EdgeInsets.only(top: 15, bottom: 20),
+                    //       shape: RoundedRectangleBorder(
+                    //           borderRadius: BorderRadius.circular(19)),
+                    //       color: Color(0xFFFDF9F9),
+                    //       // color: Colors.white,
+                    //       elevation: 10,
+                    //       child: Container(
+                    //         width: size.width * 0.3 - 5,
+                    //         height: size.height * 0.11,
+                    //         child: Column(
+                    //           children: [
+                    //             ListTile(
+                    //               title: Icon(Icons.access_alarm_outlined),
+                    //               trailing: Text(
+                    //                 'Reps',
+                    //                 style: textStyle,
+                    //               ),
+                    //             ),
+                    //             // Padding(
+                    //             //   padding: EdgeInsets.only(top: 20),
+                    //             // ),
+                    //             Text(
+                    //               widget.reps,
+                    //               style: textStyle,
+                    //               textAlign: TextAlign.center,
+                    //             )
+                    //           ],
+                    //         ),
+                    //       ),
+                    //     ),
+                    //     Card(
+                    //       margin: EdgeInsets.only(top: 15, bottom: 20),
+                    //       shape: RoundedRectangleBorder(
+                    //           borderRadius: BorderRadius.circular(19)),
+                    //       color: Color(0xFFFBFBFB),
+                    //       elevation: 10,
+                    //       child: Container(
+                    //         width: size.width * 0.3 - 5,
+                    //         height: size.height * 0.11,
+                    //         child: Column(
+                    //           children: [
+                    //             ListTile(
+                    //               title: Icon(Icons.fact_check_outlined),
+                    //               trailing: Text('Sets', style: textStyle),
+                    //             ),
+                    //             // Padding(
+                    //             //   padding: EdgeInsets.only(top: 20),
+                    //             // ),
+                    //             Text(
+                    //               widget.sets,
+                    //               style: textStyle,
+                    //               textAlign: TextAlign.center,
+                    //             ),
+                    //           ],
+                    //         ),
+                    //       ),
+                    //     ),
+                    //     Card(
+                    //       margin: EdgeInsets.only(top: 15, bottom: 20),
+                    //       shape: RoundedRectangleBorder(
+                    //           borderRadius: BorderRadius.circular(19)),
+                    //       color: Color(0xFFFFF8F8),
+                    //       elevation: 10,
+                    //       child: Container(
+                    //         width: size.width * 0.3 - 5,
+                    //         height: size.height * 0.11,
+                    //         child: Column(
+                    //           children: [
+                    //             ListTile(
+                    //               title: Icon(
+                    //                 Icons.skip_next_outlined,
+                    //                 size: 30,
+                    //               ),
+                    //               trailing: Text(
+                    //                 'Break',
+                    //                 style: textStyle,
+                    //               ),
+                    //             ),
+                    //             // Padding(
+                    //             //   padding: EdgeInsets.only(top: 20),
+                    //             // ),
+                    //             Text(
+                    //               widget.breaks,
+                    //               style: TextStyle(
+                    //                 fontSize: 20,
+                    //                 fontWeight: FontWeight.w500,
+                    //               ),
+                    //               textAlign: TextAlign.center,
+                    //             ),
+                    //           ],
+                    //         ),
+                    //       ),
+                    //     ),
+                    //   ],
+                    // ),
                     Container(
                       margin: EdgeInsets.symmetric(horizontal: 20),
                       child: Text(

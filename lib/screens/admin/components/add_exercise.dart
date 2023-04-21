@@ -34,9 +34,9 @@ class _AddExerciseState extends State<AddExercise> {
       nameController.text = widget.exerciseModel?.name ?? '';
       imageController.text = widget.exerciseModel?.image ?? '';
       linkController.text = widget.exerciseModel?.link ?? '';
-      repController.text = widget.exerciseModel?.reps ?? '';
-      setController.text = widget.exerciseModel?.sets ?? '';
-      breakTimeController.text = widget.exerciseModel?.exerciseBreak ?? '';
+      // repController.text = widget.exerciseModel?.reps ?? '';
+      // setController.text = widget.exerciseModel?.sets ?? '';
+      // breakTimeController.text = widget.exerciseModel?.exerciseBreak ?? '';
       detailController.text = widget.exerciseModel?.detail ?? '';
       muscleGroupIDController.text =
           widget.exerciseModel?.muscleGroupId.toString() ?? '';
@@ -207,9 +207,9 @@ class _AddExerciseState extends State<AddExercise> {
                   name: nameController.text,
                   image: imageController.text,
                   link: linkController.text,
-                  reps: repController.text,
-                  sets: setController.text,
-                  exerciseBreak: breakTimeController.text,
+                  // reps: repController.text,
+                  // sets: setController.text,
+                  // exerciseBreak: breakTimeController.text,
                   detail: detailController.text,
                   muscleGroupId: int.parse((muscleGroupIDController.text)),
                 );

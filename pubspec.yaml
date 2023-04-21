@@ -49,6 +49,7 @@ dependencies:
   share_plus: ^6.3.1
   quick_actions: ^1.0.1
   fluttertoast: ^8.2.1
+  flutter_slidable: ^2.0.0
   flutter_test:
     sdk: flutter
 

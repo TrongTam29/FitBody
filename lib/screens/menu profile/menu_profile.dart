@@ -123,7 +123,7 @@ class _MenuProfileState extends State<MenuProfile> {
                 ),
                 ListTile(
                   onTap: () {
-                    Get.to(() => AlarmPage());
+                    // Get.to(() => AlarmPage());
                   },
                   leading: Icon(
                     Icons.alarm,
@@ -150,7 +150,7 @@ class _MenuProfileState extends State<MenuProfile> {
                 user?.email == 'doananhtai9@gmail.com'
                     ? ListTile(
                         onTap: () {
-                          Get.to(Admin());
+                          // Get.to(Admin());
                         },
                         leading: Icon(
                           Icons.manage_accounts_rounded,
