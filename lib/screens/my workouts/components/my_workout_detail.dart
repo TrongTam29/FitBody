@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
 import 'package:my_app/components/appBar.dart';
 import 'package:my_app/model/exercise/exercise_controller.dart';
@@ -49,55 +50,14 @@ class _MyWorkoutDetailState extends State<MyWorkoutDetail> {
                     itemCount: exerciseController.userWorkoutList.length,
                     itemBuilder: (context, index) {
                       var item = exerciseController.userWorkoutList[index];
-                      return Stack(
-                        children: [
-                          GestureDetector(
-                            child: Container(
-                              height: size.height * 0.2 - 40,
-                              width: size.width * 1,
-                              margin:
-                                  EdgeInsets.only(top: 10, left: 10, right: 10),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(15),
-                                child: Image.network(
-                                  item.image!,
-                                  fit: BoxFit.fitWidth,
-                                ),
-                              ),
-                            ),
-                            onTap: () => Get.to(DetailVideo(
-                              id: item.id!,
-                              url: item.link!,
-                              nameExercise: item.name!,
-                              // reps: item.reps!,
-                              // sets: item.sets!,
-                              // breaks: item.exerciseBreak.toString(),
-                              detail: item.detail.toString(),
-                            )),
-                          ),
-                          Positioned(
-                            bottom: 10,
-                            left: 25,
-                            child: Container(
-                              padding: EdgeInsets.all(5),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: Colors.blueGrey[100],
-                              ),
-                              child: Text(
-                                item.name!,
-                                style: TextStyle(
-                                    fontFamily: 'Poppins-SemiBold',
-                                    fontSize: 16,
-                                    color: Colors.black87),
-                              ),
-                            ),
-                          ),
-                          Positioned(
-                            right: 25,
-                            top: 15,
-                            child: GestureDetector(
-                              onTap: () => {
+                      return Slidable(
+                        endActionPane: ActionPane(
+                          motion: ScrollMotion(),
+                          children: [
+                            SlidableAction(
+                              // An action can be bigger than the others.
+                              flex: 1,
+                              onPressed: (context) => {
                                 exerciseController.userWorkoutList
                                     .removeAt(index),
                                 widget.listWorkout.removeAt(index),
@@ -107,20 +67,67 @@ class _MyWorkoutDetailState extends State<MyWorkoutDetail> {
                                     widget.workoutDay.toLowerCase(),
                                     widget.listWorkout),
                               },
-                              child: Container(
-                                padding: EdgeInsets.all(1),
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: Colors.blueGrey[100],
-                                ),
-                                child: Icon(
-                                  Icons.delete_outlined,
-                                  size: 28,
+                              backgroundColor: Colors.red,
+                              foregroundColor: Colors.white,
+                              icon: Icons.delete,
+                              label: 'Delete',
+                            ),
+                          ],
+                        ),
+                        child: Container(
+                          height: size.height * 0.2 - 40,
+                          width: size.width * 1,
+                          margin: EdgeInsets.only(top: 20, left: 10, right: 10),
+                          decoration: BoxDecoration(
+                            color: Colors.blueGrey[100],
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          child: Row(
+                            children: [
+                              Container(
+                                padding: EdgeInsets.only(right: 8),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(15),
+                                  child: Image.network(
+                                    item.image!,
+                                    fit: BoxFit.cover,
+                                    height: size.height * 0.2 - 40,
+                                    width: 130,
+                                  ),
                                 ),
                               ),
-                            ),
+                              Expanded(
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      padding: EdgeInsets.all(5),
+                                      child: Text(
+                                        item.name ?? "",
+                                        maxLines: 2,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w700,
+                                            fontSize: 16,
+                                            color: Colors.black87),
+                                      ),
+                                    ),
+                                    Container(
+                                      padding:
+                                          EdgeInsets.only(top: 10, right: 5),
+                                      child: Text(
+                                        item.detail ?? '',
+                                        maxLines: 3,
+                                        textAlign: TextAlign.justify,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: TextStyle(color: Colors.black87),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
                           ),
-                        ],
+                        ),
                       );
                     },
                   ),

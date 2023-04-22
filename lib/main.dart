@@ -44,7 +44,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Fit Body',
+        title: 'BeFit',
         theme: ThemeData(
             scaffoldBackgroundColor: kBackgroundColor,
             appBarTheme: AppBarTheme(backgroundColor: kPrimaryColor),

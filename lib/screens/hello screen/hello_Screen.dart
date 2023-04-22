@@ -87,7 +87,7 @@ class _HelloScreenState extends State<HelloScreen> {
                     alignment: FractionalOffset.topCenter,
                     child: RichText(
                       text: TextSpan(
-                          text: 'Fit Body\n',
+                          text: 'BeFit\n',
                           style: TextStyle(
                               fontSize: 45,
                               fontFamily: 'Wellfleet',
@@ -126,7 +126,7 @@ class _HelloScreenState extends State<HelloScreen> {
                               color: Colors.white),
                           children: [
                             TextSpan(
-                              text: 'Channge with Fit Body\n\n',
+                              text: 'Channge with BeFit\n\n',
                               style: TextStyle(
                                   fontSize: 14,
                                   fontFamily: 'BeVietnam',

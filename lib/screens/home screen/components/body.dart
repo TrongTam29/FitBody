@@ -54,6 +54,19 @@ class _MethodsInBodyState extends State<MethodsInBody> {
       child: Column(
         children: <Widget>[
           Container(
+            padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12),
+              color: Colors.white54,
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.blueGrey.withOpacity(0.3),
+                  spreadRadius: 2,
+                  blurRadius: 3,
+                  offset: Offset(0, 3),
+                ),
+              ],
+            ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

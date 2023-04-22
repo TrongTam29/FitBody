@@ -85,7 +85,7 @@ class _MenuProfileState extends State<MenuProfile> {
                 ListTile(
                   onTap: () {
                     Get.defaultDialog(
-                      title: 'Fit Body app',
+                      title: 'BeFit app',
                       titleStyle: TextStyle(
                         fontSize: 20,
                         color: kPrimaryColor,
@@ -123,7 +123,7 @@ class _MenuProfileState extends State<MenuProfile> {
                 ),
                 ListTile(
                   onTap: () {
-                    // Get.to(() => AlarmPage());
+                    Get.to(() => AlarmPage());
                   },
                   leading: Icon(
                     Icons.alarm,
@@ -147,10 +147,10 @@ class _MenuProfileState extends State<MenuProfile> {
                     style: TextStyle(color: Colors.black),
                   ),
                 ),
-                user?.email == 'doananhtai9@gmail.com'
+                user?.email == 'doananhtai2k@gmail.com'
                     ? ListTile(
                         onTap: () {
-                          // Get.to(Admin());
+                          Get.to(Admin());
                         },
                         leading: Icon(
                           Icons.manage_accounts_rounded,

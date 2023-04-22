@@ -38,7 +38,8 @@ class Body extends StatelessWidget {
               onTap: () {
                 Get.to(NutritionDetail(nutritionId: 2));
               },
-              child: NutritionListRight(
+              child: NutritionListLeft(
+                nutritionMargin: 20,
                 size: size,
                 nutritionImage: 'assets/images/gain_weight.png',
                 nutritionTitle: 'Diet for weight gain\n',
@@ -51,7 +52,7 @@ class Body extends StatelessWidget {
                 Get.to(NutritionDetail(nutritionId: 3));
               },
               child: NutritionListLeft(
-                nutritionMargin: 50,
+                nutritionMargin: 20,
                 size: size,
                 nutritionImage: 'assets/images/gain_muscle.png',
                 nutritionTitle: 'Diet for muscle gain\n',
@@ -63,7 +64,8 @@ class Body extends StatelessWidget {
               onTap: () {
                 Get.to(NutritionDetail(nutritionId: 4));
               },
-              child: NutritionListRight(
+              child: NutritionListLeft(
+                nutritionMargin: 20,
                 size: size,
                 nutritionImage: 'assets/images/clean_body.png',
                 nutritionTitle: 'Diet for clean body\n',

@@ -55,7 +55,7 @@ class _MyWorkoutState extends State<MyWorkout> {
               child: StackDay(
                 size: size,
                 image:
-                    'https://i.pinimg.com/564x/20/46/5a/20465a2eb9d1aef97a928968ab7efa15.jpg',
+                    'https://cdn.shopify.com/s/files/1/0141/5242/t/16/assets/fitsix-4-bright_LIQo.jpg?v=1620121722618',
                 day: 'Monday',
               ),
             ),
@@ -72,7 +72,7 @@ class _MyWorkoutState extends State<MyWorkout> {
               child: StackDay(
                 size: size,
                 image:
-                    'https://i.pinimg.com/564x/20/46/5a/20465a2eb9d1aef97a928968ab7efa15.jpg',
+                    'https://cdn.shopify.com/s/files/1/0141/5242/t/16/assets/fitsix-4-bright_LIQo.jpg?v=1620121722618',
                 day: 'Tuesday',
               ),
             ),
@@ -90,7 +90,7 @@ class _MyWorkoutState extends State<MyWorkout> {
               child: StackDay(
                 size: size,
                 image:
-                    'https://i.pinimg.com/564x/20/46/5a/20465a2eb9d1aef97a928968ab7efa15.jpg',
+                    'https://cdn.shopify.com/s/files/1/0141/5242/t/16/assets/fitsix-4-bright_LIQo.jpg?v=1620121722618',
                 day: 'Wednesday',
               ),
             ),
@@ -107,7 +107,7 @@ class _MyWorkoutState extends State<MyWorkout> {
               child: StackDay(
                 size: size,
                 image:
-                    'https://i.pinimg.com/564x/20/46/5a/20465a2eb9d1aef97a928968ab7efa15.jpg',
+                    'https://cdn.shopify.com/s/files/1/0141/5242/t/16/assets/fitsix-4-bright_LIQo.jpg?v=1620121722618',
                 day: 'Thursday',
               ),
             ),
@@ -124,7 +124,7 @@ class _MyWorkoutState extends State<MyWorkout> {
               child: StackDay(
                 size: size,
                 image:
-                    'https://i.pinimg.com/564x/20/46/5a/20465a2eb9d1aef97a928968ab7efa15.jpg',
+                    'https://cdn.shopify.com/s/files/1/0141/5242/t/16/assets/fitsix-4-bright_LIQo.jpg?v=1620121722618',
                 day: 'Friday',
               ),
             ),
@@ -141,7 +141,7 @@ class _MyWorkoutState extends State<MyWorkout> {
               child: StackDay(
                 size: size,
                 image:
-                    'https://i.pinimg.com/564x/20/46/5a/20465a2eb9d1aef97a928968ab7efa15.jpg',
+                    'https://cdn.shopify.com/s/files/1/0141/5242/t/16/assets/fitsix-4-bright_LIQo.jpg?v=1620121722618',
                 day: 'Saturday',
               ),
             ),
@@ -185,7 +185,7 @@ class StackDay extends StatelessWidget {
             style: TextStyle(
                 fontFamily: 'Poppins-Bold',
                 fontSize: 40,
-                color: Colors.white54),
+                color: Colors.white70),
           ),
         ),
       ],

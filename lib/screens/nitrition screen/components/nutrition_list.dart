@@ -18,14 +18,22 @@ class NutritionListLeft extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(top: nutritionMargin),
+      padding: EdgeInsets.symmetric(vertical: 10),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20),
+        color: Color.fromARGB(255, 183, 203, 212),
+      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
-          Image.asset(
-            nutritionImage,
-            width: size.width * 0.5 - 10,
-            height: size.height * 0.1 + 10,
-            fit: BoxFit.fill,
+          ClipRRect(
+            borderRadius: BorderRadius.circular(20),
+            child: Image.asset(
+              nutritionImage,
+              width: size.width * 0.5 - 10,
+              height: size.height * 0.1 + 10,
+              fit: BoxFit.fill,
+            ),
           ),
           Center(
             child: RichText(

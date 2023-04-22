@@ -177,9 +177,9 @@ class _AlarmPageState extends State<AlarmPage> {
                             child: Container(
                               width: double.infinity,
                               decoration: BoxDecoration(
-                                color: CustomColors.clockBG,
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(15)),
+                                // color: CustomColors.clockBG,
+                                color: Colors.yellow,
+                                borderRadius: BorderRadius.circular(24),
                               ),
                               child: ElevatedButton(
                                 onPressed: () {
@@ -356,7 +356,7 @@ class _AlarmPageState extends State<AlarmPage> {
     var alarmInfo = AlarmInfo(
       alarmDateTime: scheduleAlarmDateTime,
       gradientColorIndex: _currentAlarms!.length,
-      title: 'Fit Body Alarm',
+      title: 'BeFit Alarm',
     );
     _alarmHelper.insertAlarm(alarmInfo);
     scheduleAlarm(scheduleAlarmDateTime, alarmInfo);

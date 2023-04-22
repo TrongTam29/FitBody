@@ -42,8 +42,9 @@ class _HomeSreenState extends State<HomeSreen> {
     return Scaffold(
       body: Stack(
         children: [
-          MenuProfile(),
-          buildHomePage(),
+          // MenuProfile(),
+          // buildHomePage(),
+          Home()
         ],
       ),
     );
@@ -72,7 +73,7 @@ class _HomeSreenState extends State<HomeSreen> {
           absorbing: isDrawerOpen,
           child: ClipRRect(
               borderRadius: BorderRadius.circular(isDrawerOpen ? 30 : 0),
-              child: Home(openDrawer: openDrawer)),
+              child: Home()),
         ),
       ),
     );
